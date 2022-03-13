@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 import { Row, Spinner } from 'react-bootstrap';
-import './App.css';
 import News from './Components/News';
 
 function App() {
@@ -20,12 +19,8 @@ function App() {
     transform:'translate(-50%,-50%)'
   }
 
-  const handleSearchField = () =>{
-    console.log();
-  }
   return (
     <>
-    <input type="text" onChange={handleSearchField} />
       {news.length === 0 ?
         <div style={Mystyle}>
           <Spinner animation="grow" variant="danger" />
