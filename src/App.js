@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+
+import { useEffect, useState } from 'react';
+import { Row, Spinner } from 'react-bootstrap';
 import './App.css';
+import News from './Components/News';
 
 function App() {
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    fetch('https://newsapi.org/v2/everything?q=tesla&from=2022-02-13&sortBy=publishedAt&apiKey=6f6485e043d749b88eabfec870af251b')
+      .then(res => res.json())
+      .then(data => setNews(data.articles))
+  }, [])
+
+
+  const Mystyle = {
+    position:'absolute',
+    left:'50%',
+    top:"50%",
+    transform:'translate(-50%,-50%)'
+  }
+
+  const handleSearchField = () =>{
+    console.log();
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <input type="text" onChange={handleSearchField} />
+      {news.length === 0 ?
+        <div style={Mystyle}>
+          <Spinner animation="grow" variant="danger" />
+        </div>
+        :
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {
+            news.map(nw => <News news={nw} ></News>)
+          }
+        </Row>
+
+      }
+    </>
   );
 }
 
