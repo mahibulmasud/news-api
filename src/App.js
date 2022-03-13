@@ -6,7 +6,7 @@ import News from './Components/News';
 function App() {
   const [news, setNews] = useState([]);
   useEffect(() => {
-    fetch('https://newsapi.org/v2/everything?q=tesla&from=2022-02-13&sortBy=publishedAt&apiKey=6f6485e043d749b88eabfec870af251b')
+    fetch('http://newsapi.org/v2/everything?q=tesla&from=2022-02-13&sortBy=publishedAt&apiKey=6f6485e043d749b88eabfec870af251b')
       .then(res => res.json())
       .then(data => setNews(data.articles))
   }, [])
